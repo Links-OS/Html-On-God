@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Html on god</title>
+</head>
+<body>
+	<h1>Rock Paper Scissors</h1>
+	<p>Choose your move:</p>
+  <a href="index.html">Home Page.</a>
+	<button id="rock">Rock</button>
+	<button id="paper">Paper</button>
+	<button id="scissors">Scissors</button>
+	<p id="result"></p>
+	<script>
+		// Define variables
+		let playerScore = 0;
+		let computerScore = 0;
+		const buttons = document.querySelectorAll('button');
+		const result = document.querySelector('#result');
+
+		// Function to generate a computer move
+		function computerPlay() {
+			const moves = ['rock', 'paper', 'scissors'];
+			const randomIndex = Math.floor(Math.random() * 3);
+			return moves[randomIndex];
+		}
+
+		// Function to play a round
+		function playRound(playerSelection, computerSelection) {
+			if (playerSelection === computerSelection) {
+				return 'It\'s a tie!';
+			} else if (playerSelection === 'rock') {
+				if (computerSelection === 'paper') {
+					computerScore++;
+					return 'You lose! Paper beats rock.';
+				} else {
+					playerScore++;
+					return 'You win! Rock beats scissors.';
+				}
+			} else if (playerSelection === 'paper') {
+				if (computerSelection === 'scissors') {
+					computerScore++;
+					return 'You lose! Scissors beats paper.';
+				} else {
+					playerScore++;
+					return 'You win! Paper beats rock.';
+				}
+			} else if (playerSelection === 'scissors') {
+				if (computerSelection === 'rock') {
+					computerScore++;
+					return 'You lose! Rock beats scissors.';
+				} else {
+					playerScore++;
+					return 'You win! Scissors beats paper.';
+				}
+			}
+		}
+
+		// Function to update the game results
+		function updateResult() {
+			result.textContent = `Player Score: ${playerScore} - Computer Score: ${computerScore}`;
+			if (playerScore >= 5) {
+				result.textContent = 'You won the game!';
+				disableButtons();
+			} else if (computerScore >= 5) {
+				result.textContent = 'You lost the game!';
+				disableButtons();
+			}
+		}
+
+		// Function to disable the buttons
+		function disableButtons() {
+			buttons.forEach(button => {
+				button.disabled = true;
+			});
+		}
+
+		// Event listeners for each button
+		buttons.forEach(button => {
+			button.addEventListener('click', () => {
+				const playerSelection = button.id;
+				const computerSelection = computerPlay();
+				const roundResult = playRound(playerSelection, computerSelection);
+				updateResult();
+				alert(roundResult);
+			});
+		});
+	</script>
+</body>
+</html>

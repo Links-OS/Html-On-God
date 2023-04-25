@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Html On god - Bread order form</title>
+  <a href="index.html">Homescreen<a>
+	<style>
+		body {
+			font-family: sans-serif;
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		h1, h2 {
+			text-align: center;
+		}
+		form {
+			margin-top: 20px;
+			padding: 10px;
+			background-color: #eee;
+			border: 2px solid #000;
+			border-radius: 5px;
+		}
+		label {
+			display: block;
+			margin: 10px 0;
+		}
+		input[type="radio"] {
+			display: inline-block;
+			margin: 0 10px;
+		}
+		input[type="submit"] {
+			margin-top: 20px;
+			padding: 5px 10px;
+			font-size: 1rem;
+			background-color: #fff;
+			border: 2px solid #000;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		input[type="submit"]:hover {
+			background-color: #000;
+			color: #fff;
+		}
+		#output {
+			margin-top: 20px;
+			padding: 10px;
+			background-color: #eee;
+			border: 2px solid #000;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+	<center><marquee><h1>Buy some Bread</h1></marquee></center>
+	<h2>Order Form</h2>
+	<form id="order-form">
+		<label for="bread-type">Bread Type:</label>
+		<select id="bread-type" name="bread-type">
+			<option value="sourdough">Sourdough</option>
+			<option value="whole-wheat">Whole Wheat</option>
+			<option value="rye">Rye</option>
+			<option value="focaccia">Focaccia</option>
+      <option value="white">White</option>
+      <option value="naan">Naan</option>
+      <option value="pita">Pita</option>
+      <option value="zucchini">Zucchini</option>
+      <option value="zucchini">Potato</option>
+		</select>
+
+		<label for="quantity">Quantity:</label>
+		<input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+
+		<label>Size:</label>
+		<input type="radio" id="small" name="size" value="small" checked>
+		<label for="small">Small</label>
+		<input type="radio" id="medium" name="size" value="medium">
+		<label for="medium">Medium</label>
+		<input type="radio" id="large" name="size" value="large">
+		<label for="large">Large</label>
+
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required>
+
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required>
+
+		<input type="submit" value="Order">
+	</form>
+
+	<div id="output"></div>
+
+	<script>
+		// define variables
+		let orderForm = document.getElementById('order-form');
+		let output = document.getElementById('output');
+
+		// handle form submission
+		orderForm.addEventListener('submit', function(event) {
+			event.preventDefault();
+
+			// get form data
+			let formData = new FormData(orderForm);
+			let breadType = formData.get('bread-type');
+			let quantity = formData.get('quantity
